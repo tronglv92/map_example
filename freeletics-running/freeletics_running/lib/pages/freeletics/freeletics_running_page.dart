@@ -3,25 +3,25 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:freeletics_running/helper/helper.dart';
-import 'package:freeletics_running/pages/monitor.dart';
+import 'package:freeletics_running/pages/freeletics/monitor.dart';
 import 'package:freeletics_running/widgets/appbar_empty.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
 
 
-import '../secrets.dart';
+import '../../secrets.dart';
 
 const double CAMERA_ZOOM = 14;
 
 const LatLng SOURCE_LOCATION = LatLng(10.802772, 106.64535);
 const LatLng DEST_LOCATION = LatLng(10.8115425, 106.6620336);
 
-class HomePage extends StatefulWidget {
+class FreeleticsRunningPage extends StatefulWidget {
   @override
-  _HomePageState createState() => _HomePageState();
+  _FreeleticsRunningPageState createState() => _FreeleticsRunningPageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _FreeleticsRunningPageState extends State<FreeleticsRunningPage> {
   Completer<GoogleMapController> _completer = Completer();
   GoogleMapController _controller;
 
@@ -40,7 +40,7 @@ class _HomePageState extends State<HomePage> {
 
 
   List<LocationData> listPositions = [];
-  int totalDistance=200;
+  int totalDistance=500;
   int runDistance = 0;
   double runDuration=0;
   double runSpace=0;
@@ -59,7 +59,7 @@ class _HomePageState extends State<HomePage> {
       'longitude': SOURCE_LOCATION.longitude
     });
 
-    setSourceAndDesIcons();
+
   }
 
   void _onMapCreated(GoogleMapController controller) async {
@@ -70,8 +70,14 @@ class _HomePageState extends State<HomePage> {
     await checkPermission();
 
     _location.changeSettings(interval: 1000);
+    bool checkRunBackGround= await  _location.isBackgroundModeEnabled();
+    if(checkRunBackGround==false)
+      {
+        await _location.enableBackgroundMode(enable: true);
+      }
     _location.onLocationChanged.listen((LocationData currentLocation) {
 
+      print("_location.onLocationChanged.listen ");
       if (_currentLocation != currentLocation)
         moveToCurrentLocation(currentLocation);
     });
@@ -155,21 +161,21 @@ class _HomePageState extends State<HomePage> {
     }
   }
 
-  void setSourceAndDesIcons() async {
-    BitmapDescriptor.fromAssetImage(
-            ImageConfiguration(devicePixelRatio: 2.0, size: Size(10, 10)),
-            'assets/driving_pin.png')
-        .then((onValue) {
-      sourceIcon = onValue;
-    });
-
-    BitmapDescriptor.fromAssetImage(
-            ImageConfiguration(devicePixelRatio: 2.0, size: Size(10, 10)),
-            'assets/driving_pin.png')
-        .then((value) {
-      destinationIcon = value;
-    });
-  }
+  // void setSourceAndDesIcons() async {
+  //   BitmapDescriptor.fromAssetImage(
+  //           ImageConfiguration(devicePixelRatio: 2.0, size: Size(10, 10)),
+  //           'assets/driving_pin.png')
+  //       .then((onValue) {
+  //     sourceIcon = onValue;
+  //   });
+  //
+  //   BitmapDescriptor.fromAssetImage(
+  //           ImageConfiguration(devicePixelRatio: 2.0, size: Size(10, 10)),
+  //           'assets/driving_pin.png')
+  //       .then((value) {
+  //     destinationIcon = value;
+  //   });
+  // }
 
   void showCurrentMark() {
     if (_currentLocation != null) {
@@ -199,7 +205,7 @@ class _HomePageState extends State<HomePage> {
         children: [
           Monitor(totalDistance: totalDistance,runDistance: runDistance,runSpace: runSpace,),
           Expanded(
-            flex: 3,
+            flex: 1,
             child: GoogleMap(
               mapType: MapType.normal,
               initialCameraPosition: cameraPosition,

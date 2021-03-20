@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:freeletics_running/pages/circle_painter.dart';
-import 'package:freeletics_running/pages/home_page.dart';
 
-import 'pages/test_page.dart';
+import 'package:freeletics_running/pages/freeletics/freeletics_running_page.dart';
+
+import 'pages/route_map/map_page.dart';
+
+
 
 void main() {
   runApp(MyApp());
@@ -27,7 +29,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: HomePage(),
+      home: FreeleticsRunningPage(),
     );
   }
 }

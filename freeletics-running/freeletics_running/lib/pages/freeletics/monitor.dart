@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:freeletics_running/pages/circle_painter.dart';
-import 'package:freeletics_running/pages/time_count.dart';
+import 'package:freeletics_running/pages/freeletics/circle_painter.dart';
+import 'package:freeletics_running/pages/freeletics/time_count.dart';
 import 'package:intl/intl.dart';
 
 class Monitor extends StatelessWidget {
@@ -23,6 +23,7 @@ class Monitor extends StatelessWidget {
     double currentProgress = (runDistance / totalDistance) * 100;
     if (currentProgress >= 100) currentProgress = 100;
     return Container(
+      height: 260,
       color: Color.fromRGBO(41, 36, 45, 1),
       child: Column(
         children: [
