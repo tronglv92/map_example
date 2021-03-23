@@ -9,8 +9,11 @@ class AppBarEmpty extends StatelessWidget {
         elevation: 0,
         toolbarHeight: 0,
       ),
-      body: Container(
-        child: child,
+      body: SafeArea(
+        child: Container(
+          color: Colors.white,
+          child: child,
+        ),
       ),
     );
   }

@@ -1,6 +1,6 @@
 import 'dart:math' show cos, sqrt, asin;
 
-import 'package:location/location.dart';
+import 'package:geolocator/geolocator.dart';
 class Helper{
   static double calculateDistance(lat1, lon1, lat2, lon2) {
     var p = 0.017453292519943295;
@@ -11,9 +11,13 @@ class Helper{
     var distance= 12742 * asin(sqrt(a));
     return distance*1000;
   }
-  static double spaceBetween(int distance, LocationData from,LocationData to)
+  static double spaceBetween(int distance, Position from,Position to)
   {
-    double pace = (to.time - from.time) / distance;
+    print("distance "+distance.toString());
+    print("to.timestamp.difference(from.timestamp).inSeconds "+to.timestamp.difference(from.timestamp).inSeconds.toString());
+    double timeDif=(to.timestamp.difference(from.timestamp).inMilliseconds).toDouble();
+    double pace = timeDif/distance;
+
     return pace;
   }
 

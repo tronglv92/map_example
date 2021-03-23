@@ -7,9 +7,9 @@ class Monitor extends StatelessWidget {
   final int totalDistance;
   final int runDistance;
   final double runSpace;
+  final Function onPressClose;
 
-
-  Monitor({this.runDistance, this.totalDistance, this.runSpace=0});
+  Monitor({this.runDistance, this.totalDistance, this.runSpace=0,this.onPressClose});
 
   String toFormatDateTime(double second) {
     DateTime dateTime = (DateTime.fromMicrosecondsSinceEpoch((second*1000000).round()));
@@ -72,7 +72,7 @@ class Monitor extends StatelessWidget {
                   color: Colors.white,
                 ),
                 iconSize: 25,
-                onPressed: () {}),
+                onPressed: onPressClose),
           ),
           Text(
             totalDistance.toString() + ' M',
