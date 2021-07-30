@@ -53,18 +53,18 @@ class _MapPageState extends State<MapPage> {
   void initState() {
     super.initState();
 
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      getCurrentLocation();
-    });
+    // WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+    //   getCurrentLocation();
+    // });
 
   }
 
-
-  getCurrentLocation() async{
-
-
-
-  }
+  //
+  // getCurrentLocation() async{
+  //
+  //
+  //
+  // }
   @override
   void dispose() {
     // TODO: implement dispose

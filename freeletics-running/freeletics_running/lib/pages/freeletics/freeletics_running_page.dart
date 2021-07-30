@@ -133,6 +133,7 @@ class _FreeleticsRunningPageState extends State<FreeleticsRunningPage> {
 
 
        runSpace=Helper.spaceBetween(runDistance, beforeLocation, lastLocation);
+       print("run space "+runSpace.toString());
 
       this.runDistance=this.runDistance+runDistance;
 

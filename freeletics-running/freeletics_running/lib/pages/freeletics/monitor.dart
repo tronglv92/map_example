@@ -124,7 +124,7 @@ class Monitor extends StatelessWidget {
                 width: 5,
               ),
               Text(
-                toFormatDateTime(runSpace),
+             toFormatDateTime(runSpace),
                 style: TextStyle(fontSize: 18, color: Colors.white),
               ),
             ],
